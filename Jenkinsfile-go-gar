@@ -1,0 +1,15 @@
+pipeline {
+    agent {
+        label 'docker'
+    }
+
+    stages {
+        stage('Build Container Image') {
+            steps {
+                echo 'Building Container Image from code...'
+                sh 'docker build -t asia-southeast2-docker.pkg.dev/studidevops-batch-12/golang-app-jenkins/goapp:1.0 .'
+                sh 'docker image ls'
+            }
+        }
+    }
+}
