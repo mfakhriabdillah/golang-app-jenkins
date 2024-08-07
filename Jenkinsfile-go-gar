@@ -16,7 +16,7 @@ pipeline {
         }
         stage('Push Image to GAR') {
             steps {
-                sh 'gcloud auth activate-service-account $(cat ${GCP_SERVICE_ACCOUNT} | jq -r .client_email) --key-file=${GCP_SERVICE_ACCOUNT}"'
+                sh 'gcloud auth activate-service-account $(cat ${GCP_SERVICE_ACCOUNT} | jq -r .client_email) --key-file=${GCP_SERVICE_ACCOUNT}'
                 sh 'gcloud auth configure-docker asia-southeast2-docker.pkg.dev --quiet'
                 sh 'docker push asia-southeast2-docker.pkg.dev/studidevops-batch-12/golang-app-jenkins/goapp:1.${BUILD_NUMBER}'
             }
