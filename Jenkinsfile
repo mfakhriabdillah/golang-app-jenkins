@@ -13,7 +13,7 @@ pipeline {
                 echo 'Building application...'
                 sh '''
                     go version
-                    GOOS=linux GOARCH=amd64 go build -o golang-app
+                    GOCACHE=/tmp/ GOOS=linux GOARCH=amd64 go build -o golang-app
                 '''
             }
         }
