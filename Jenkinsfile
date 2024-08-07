@@ -17,5 +17,17 @@ pipeline {
                 '''
             }
         }
+        stage('Deploy') {
+            environment {
+                SSH_KEY = credentials('SSHCRED')
+            }
+            steps {
+                echo 'Deploying Application...'
+                sh '''
+                    scp -o StrictHostKeyChecking=no -i $SSH_KEY golang-app faseero0@10.128.0.14:~/golang-app/
+
+                '''
+            }
+        }
     }
 }
