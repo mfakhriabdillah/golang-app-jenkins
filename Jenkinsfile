@@ -10,8 +10,11 @@ pipeline {
                 }
             }
             steps {
-                echo 'Hello World'
                 echo 'Building application...'
+                sh '''
+                    go version
+                    go help
+                '''
             }
         }
     }
