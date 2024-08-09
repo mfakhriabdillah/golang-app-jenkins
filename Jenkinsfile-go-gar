@@ -25,7 +25,7 @@ pipeline {
             steps {
                 sh 'gcloud container clusters get-credentials golang-jenkins --zone asia-southeast2-b --project studidevops-batch-12'
                 sh 'kubectl get nodes'
-                sh 'helm upgrade goapp-dev ./golang-application --set image.repository="asia-southeast2-docker.pkg.dev/studidevops-batch-12/golang-app-jenkins/goapp" --set image.tag="1.${BUILD_NUMBER}"'
+                sh 'helm upgrade --install goapp-dev ./golang-application --set image.repository="asia-southeast2-docker.pkg.dev/studidevops-batch-12/golang-app-jenkins/goapp" --set image.tag="1.${BUILD_NUMBER}" --set service.port="8080"'
             }
         }
     }
