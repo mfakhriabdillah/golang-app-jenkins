@@ -21,5 +21,11 @@ pipeline {
                 sh 'docker push asia-southeast2-docker.pkg.dev/studidevops-batch-12/golang-app-jenkins/goapp:1.${BUILD_NUMBER}'
             }
         }
+        stage('Deploy to Kubernetes Cluter via Helm') {
+            steps {
+                sh 'gcloud container clusters get-credentials golang-jenkins --zone asia-southeast2-b --project studidevops-batch-12'
+                sh 'kubectl get nodes'
+            }
+        }
     }
 }
